@@ -25,49 +25,49 @@
 
 .art-caption {
   margin-top: 6px;
-  color: #555;
+  color: #bbb;
 }
 </style>
 
 <div class="art-grid">
 
   <div class="art-card">
-    <img src="/assets/images/art4.jpeg" alt="Luffy">
+    <img src="{{ base_url }}/assets/images/art4.jpeg" alt="Luffy">
     <div class="art-caption"><b>Luffy</b><br>Never give up!</div>
   </div>
 
   <div class="art-card">
-    <img src="/assets/images/art6.jpeg" alt="Kokushibo">
+    <img src="{{ base_url }}/assets/images/art6.jpeg" alt="Kokushibo">
     <div class="art-caption"><b>Kokushibo</b><br>Drew this during class XD</div>
   </div>
 
   <div class="art-card">
-    <img src="/assets/images/art5.jpeg" alt="RDJ">
+    <img src="{{ base_url }}/assets/images/art5.jpeg" alt="RDJ">
     <div class="art-caption"><b>RDJ</b><br>Sketch was good, pen ruined it 😭</div>
   </div>
 
   <div class="art-card">
-    <img src="/assets/images/art9.jpeg" alt="Tanjiro x Kanao">
+    <img src="{{ base_url }}/assets/images/art9.jpeg" alt="Tanjiro x Kanao">
     <div class="art-caption"><b>Tanjiro × Kanao</b><br>The famous coin flip scene</div>
   </div>
 
   <div class="art-card">
-    <img src="/assets/images/art1.jpeg" alt="Nezuko x Zenitsu">
+    <img src="{{ base_url }}/assets/images/art1.jpeg" alt="Nezuko x Zenitsu">
     <div class="art-caption"><b>Nezuko & Zenitsu</b><br>Nezuko worried ❤️</div>
   </div>
 
   <div class="art-card">
-    <img src="/assets/images/art7.jpeg" alt="Vayalar">
+    <img src="{{ base_url }}/assets/images/art7.jpeg" alt="Vayalar">
     <div class="art-caption"><b>Vayalar</b><br>Local poet</div>
   </div>
 
   <div class="art-card">
-    <img src="/assets/images/art8.jpeg" alt="O. N. V. Kurup">
+    <img src="{{ base_url }}/assets/images/art8.jpeg" alt="O. N. V. Kurup">
     <div class="art-caption"><b>O. N. V. Kurup</b><br>Local poet</div>
   </div>
 
   <div class="art-card">
-    <img src="/assets/images/art3.jpeg" alt="Friendship">
+    <img src="{{ base_url }}/assets/images/art3.jpeg" alt="Friendship">
     <div class="art-caption"><b>Friendship</b></div>
   </div>
 
