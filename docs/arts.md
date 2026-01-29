@@ -1,74 +1,24 @@
-<style>
-.art-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
+# These are some of my sketches and arts
+![Luffy](assets/images/art4.jpeg)    
+Never give up!     
 
-.art-card {
-  text-align: center;
-  font-size: 0.9rem;
-}
+![Kokushibo](assets/images/art6.jpeg)  
+Kokushibo drew this while professor was taking class XD  
 
-.art-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
+![RDJ](assets/images/art5.jpeg)  
+RDJ,This one pencil sketch was good but then ig i ruined it at   the pen cuz the sketch is a bit shaky.     
 
-.art-card img:hover {
-  transform: scale(1.05);
-}
+![TanjiroxKanao](assets/images/art9.jpeg)    
+The famous coin flip scene   
 
-.art-caption {
-  margin-top: 6px;
-  color: #bbb;
-}
-</style>
+![NezukoxZenitsu](assets/images/art1.jpeg)  
+Nezuko worried about Zenitsu :heart:  
 
-<div class="art-grid">
+![Vayalar](assets/images/art7.jpeg)  
+A poet in my local area   
 
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art4.jpeg" alt="Luffy">
-    <div class="art-caption"><b>Luffy</b><br>Never give up!</div>
-  </div>
+![ONVkurup](assets/images/art8.jpeg)   
+A poet in my local area   
 
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art6.jpeg" alt="Kokushibo">
-    <div class="art-caption"><b>Kokushibo</b><br>Drew this during class XD</div>
-  </div>
-
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art5.jpeg" alt="RDJ">
-    <div class="art-caption"><b>RDJ</b><br>Sketch was good, pen ruined it 😭</div>
-  </div>
-
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art9.jpeg" alt="Tanjiro x Kanao">
-    <div class="art-caption"><b>Tanjiro × Kanao</b><br>The famous coin flip scene</div>
-  </div>
-
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art1.jpeg" alt="Nezuko x Zenitsu">
-    <div class="art-caption"><b>Nezuko & Zenitsu</b><br>Nezuko worried ❤️</div>
-  </div>
-
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art7.jpeg" alt="Vayalar">
-    <div class="art-caption"><b>Vayalar</b><br>Local poet</div>
-  </div>
-
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art8.jpeg" alt="O. N. V. Kurup">
-    <div class="art-caption"><b>O. N. V. Kurup</b><br>Local poet</div>
-  </div>
-
-  <div class="art-card">
-    <img src="{{ base_url }}/assets/images/art3.jpeg" alt="Friendship">
-    <div class="art-caption"><b>Friendship</b></div>
-  </div>
-
-</div>
+![Friendship](assets/images/art3.jpeg)   
+Friendship  
