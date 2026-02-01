@@ -4,7 +4,7 @@ nav:
   - Home: index.md
   - Arts: arts.md
   - About: about.md
-  - OOP: code_examples.md
+  - OOP: oop.md
   - Admonitions: admonitions.md
   - content tabs: content_tabs.md
 theme:
