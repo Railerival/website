@@ -1,5 +1,7 @@
 # Learning OOP
 
+### About the page
+[On progress don't use it right now]
 **I m learning OOP and making notes of it as i go (reference:[ Corey Schafer](https://youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc&si=WBUQBxK8mvtON8cT))** But i have did my own research too and made it as detailed as possible.
 
 __Why is OOP needed?__:  
@@ -8,7 +10,7 @@ OOP logically helps us to group data and functions such that it is easy to use a
 class Employee:
     pass
 INTEGER = 1
-emp_1 = Employee()
+emp_1 = Employee() #instantiation or basically creating instances 
 emp_2 = Employee()
 print(emp_1)
 print(emp_2)
@@ -131,9 +133,8 @@ print(emp_2.raise)
 print(emp_1.__dict__)
 print(Employee.__dict__)
 ```
-Here there is a class variable which is an attribute of the class and is also a common attribute to all the instances
-`self.pay = self.pay*self.raise` this needed a `self.raise` rather than a `raise` because otherwise it would not be 
-accessible another way to acces it would be `self.pay = self.pay*Employee.raise`.
+Here there is a class variable which is an attribute of the class and is also a common attribute to all the instances.
+In this line `self.pay = self.pay*self.raise`, `self.raise` was used instead of using `raise` as the variable because it would not be accessible, another way to access it would be `self.pay = self.pay*Employee.raise`.
 ```py
 print(Employee.raise)
 print(emp_1.raise)
@@ -145,9 +146,8 @@ the class itself.
 print(emp_1.__dict__)
 print(Employee.__dict__)
 ```
-This prints the namespace of the instance and the class and shows that the class one displays the class variable
-but the instance one does not have it.But when we do the `print(emp_1.raise)` the instance accesses it from the 
-class
+This prints the namespace of the instance and the class and shows that the `print(Employee.__dict__)` one displays the class variable but the `print(emp_1.__dict__)` one does not have it.But when we do the `print(emp_1.raise)` the instance accesses it from the 
+class.
 ```py
 class Employee:
     raise = 1.04
@@ -198,12 +198,177 @@ print(noofemployees)
 This gives an output 2 because the variable gets incremented 2 times because 2 instances were instantiated
 and would get stored in the memory as a class variable
 
+### Class methods and Static methods 
 
+```py
+class Employee:
+    raise = 1.04
+    def __init__(self,fname,lname,pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + lname + "@gmail.com"
+    @classmethod
+    def set_raise_amount(cls, amount):
+        cls.raise = amount
+emp_1 = Employee("corey","schafer",5000)
+emp_2 = Employee("Rai","Rai",6000)
+Employee.set_raise_amount(1.05)
+```
+This is a class method example, here a decorator `@classmethod` is used and instead of the instance `self` the class is used in the form of `cls`.  
+Even if we use `emp_1.set_raise_amount(1.05)` instead that would still
+alter the class variable for all the instances.
 
+### Alternative constructors using Class methods
+Instead of instantiating the class manually what if we were given a string and then we have to somehow parse it,before instantianting instances? We can do that using class methods too
+and this is what alternative constructors mean.
 
+```py
+class Employee:
+    def __init__(self,fname,lname,pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + lname + "@gmail.com"
+    @classmethod
+    def from_string(cls, emp_str):
+        first, last, pay = emp_str.split("-")
+        return cls(first, last, pay)
+emp_str_1 = "John-Doe-70000"
+emp_1 = Employee("corey","schafer",5000)
+emp_2 = Employee("Rai","Rai",6000)
+new_emp_1 = Employee.from_string(emp_str_1)
+print(new_emp_1.pay)
+```
+This is how class methods are used to create instances, Here to parse the data, a class method is used which was named `from_string` mostly such functions who are used to instantiate instances from a data have conventionally their name starting with `from`.
 
+### Static methods
 
+```py
+class Employee:
+    def __init__(self,fname,lname,pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + lname + "@gmail.com"
+    @staticmethod
+    def is_workday(day):
+        day = day.lower
+        if day == "saturday" or day == "sunday":
+            return False
+        return True
 
+emp_1 = Employee("corey","schafer",5000)
+emp_2 = Employee("Rai","Rai",6000)
+if Employee.is_workday("Tuesday"):
+    print("workday")
+```
+Static methods are normal methods that are related to the object the class creates, but does not automatically pass the `self` or `cls` when called.
 
+### Inheritance and Subclasses
+Inheritance allows a subclass to reuse and extend the attributes and methods of an existing class
+```py
+class Employee:
+    def __init__(self,fname,lname,pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + lname + "@gmail.com"
+class Developer(Employee):
+    pass
+dev_1 = Developer("corey","schafer",5000)
+dev_2 = Developer("Rai","Rai",6000)
+print(help(Developer))
+```
+When we instantiated python looked for an `__init__` method in developer class but did not find it, And then looked for `__init__`
+method in its parent class i.e., `Employee`
+```py
+Help on class Developer in module __main__:
 
+class Developer(Employee)
+ |  Developer(fname, lname, pay)
+ |
+ |  Method resolution order:
+ |      Developer
+ |      Employee
+ |      builtins.object
+ |
+ |  Methods inherited from Employee:
+ |
+ |  __init__(self, fname, lname, pay)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from Employee:
+ |
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ ```
+ The last print gives helpful information about the order of methods and other useful informations
+```py
+class Employee:
+    raise = 1.05
+    def __init__(self,fname,lname,pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + lname + "@gmail.com"
+    def apply_raise(self,raise):
+        self.raise = raise
+class Developer(Employee):
+    pass
+dev_1 = Developer("corey","schafer",5000)
+dev_2 = Employee("Rai","Rai",6000)
+print(dev_1.pay)
+dev1.apply_raise(1.10)
+print(dev_1.pay)
+print(dev_2.raise)
+```
+By changing the raise amount in our subclass it didnt have any effect on our employee instances,We can make changes to the subclass
+without changing it in parent class
+```py
+class Employee:
+    raise = 1.05
+    def __init__(self,fname,lname,pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + lname + "@gmail.com"
+    def apply_raise(self,raise):
+        self.raise = raise
+class Developer(Employee):
+    def __init__(self,fname,lname,pay,prog_lang):
+        super().__init__(fname,lname,pay) #Employee.__init(self,fname,lname,pay), another way people use
+        self.prog_lang = prog_lang
+class Manager(Employee):
+    def __init__(self,fname,lname,pay,employees=None):
+        super().__init__(fname,lname,pay) #Employee.__init(self,fname,lname,pay), another way people use
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+    def add_emp(self,emp):
+        if employee not in self.employees:
+            self.employee.append(emp)
+    def rem_emp(self,emp):
+        if employee in self.employees:
+            self.employee.remove(emp)
+    def print_emp(self):
+        for emp in self.employees:
+            print("-->", emp.fullname())
+dev_1 = Developer("corey","schafer",5000,"python")
+dev_2 = Developer("Rai","Rai",6000,"java")
+mgr_1 = Manager("sue","smith",70000,[dev_1])
+print(mgr_1.email)
+mgr_1.add_emp(dev_2)
+mgr_1.print_emp()
+print(isinstance(mgr_1, Manager))
+print(isinstance(mgr_1, Employee))
+print(issubclass(Developer, Employee))
+print(issubclass(Manager, Employee))
+print(issubclass(Manager, Developer))
+```
 

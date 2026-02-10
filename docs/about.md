@@ -4,7 +4,7 @@ My name is 🜲 Rai:
 🛠️ Electronics and communication Engineer(soon)  
 🖼️ Loves anime  
 🤔 Working and learning:
-discord.py,CS50p,CS50sql,venv,mkdocs material and more  
+discord.py,CS50p,CS50sql and more  
 🕜 Future plans to learn AI/DS  
 🎨 i like to draw and sing  
 🖊️ I also would love to start writing blogs   
