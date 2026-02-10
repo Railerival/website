@@ -22,3 +22,20 @@ A poet in my local area
 
 ![Friendship](assets/images/art3.jpeg)   
 Friendship  
+
+# My ASCII arts
+**ASCII watches**
+``` 
+                              #x#                 #+++#       
+                              #x#                 #+++#       
+          ___                /###\                =====       
+        /_____\             +-----+              :     :      
+       o|19:52|o            | WED |             :  WED  :     
+        |_____|             |01:03|0            : 01:03 :o    
+        | Wed |             | FEB |             :  FEB  :     
+       o| Feb |o            +-----+              :     :      
+        \ ___ /              \###/                =====       
+                              #x#                 #+++#       
+                              #x#                 #+++#       
+                                                  #+++#       
+```
