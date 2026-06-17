@@ -3,9 +3,13 @@ My name is 🜲 Rai:
 ⌨️ Hobbyist programmer  
 🛠️ Electronics and communication Engineer(soon)  
 🖼️ Loves anime  
-🤔 Working and learning:
-discord.py,CS50p,CS50sql and more  
-🕜 Future plans to learn AI/DS  
+🤔 Working and learning on:
+```
+-Python OOP
+-C language
+-2D game using Pygame
+```
+🕜 Future plans [?] idk
 🎨 i like to draw and sing  
 🖊️ I also would love to start writing blogs   
 

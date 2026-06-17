@@ -21,8 +21,10 @@ print(type(INTEGER))
 <__main__.Employee object at 0x000002AB96A64F50>
 <class 'int'>
 ```
-
+`Whats an instance?`: It is an object created using the blueprint(class),
+`Whats instantiation?`: It is creation of the instance 
 `emp_1` is an instance variable, each instance variable contains data unique to itself.
+
 
 ### What are attributes and methods?
 In simple words attributes are properties of an object, for example if cat is an object the colour of the cat is an attribute and methods are functions inside a class they represent what an object can do, for example a cat can jump is a method.  
@@ -54,7 +56,7 @@ emp_2 = Employee("Rai","Rai",6000)
 print(emp_1.email)
 emp_1.work()#method being used
 ```
-Here the init method is used to create attributes for the object Employee and is common to all the instances unlike the dynamic attribute assignment.Also the self represents the instance, The self can be anything that represents the instance but mostly "self" is used.init method name is surrounded by `__` (2 underscores) these are called dunders and we will learn about them later.  
+Here the init method is used to create attributes for the object Employee and is common to all the instances unlike the dynamic attribute assignment.Also the self represents the instance, The self can be replaced with anything that represents the instance but mostly "self" is used. init method name is surrounded by `__` (2 underscores) these are called dunders and we will learn about them later.  
 
 `self.fname = fname` saves the value of `fname` inside the object so each instance can have its own `fname` and it stays as an attribute to the object.  
 `Employee("corey", "schafer", 5000)` calls `Employee.__init__`(this is how methods are used with the object)
@@ -306,8 +308,8 @@ class Developer(Employee)
  |
  |  __weakref__
  |      list of weak references to the object (if defined)
- ```
- The last print gives helpful information about the order of methods and other useful informations
+```
+The last print gives helpful information about the order of methods and other useful informations
 ```py
 class Employee:
     raise = 1.05
