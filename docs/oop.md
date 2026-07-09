@@ -1,7 +1,6 @@
 # Learning OOP
 
 ### About the page
-[On progress don't use it right now]
 **I m learning OOP and making notes of it as i go (reference:[ Corey Schafer](https://youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc&si=WBUQBxK8mvtON8cT))** But i have did my own research too and made it as detailed as possible.
 
 __Why is OOP needed?__:  
@@ -21,13 +20,14 @@ print(type(INTEGER))
 <__main__.Employee object at 0x000002AB96A64F50>
 <class 'int'>
 ```
-`Whats an instance?`: It is an object created using the blueprint(class),
-`Whats instantiation?`: It is creation of the instance 
+`Whats an instance?`: It is an object created using the blueprint(class),  
+`Whats instantiation?`: It is creation of the instance   
 `emp_1` is an instance variable, each instance variable contains data unique to itself.
 
 
 ### What are attributes and methods?
-In simple words attributes are properties of an object, for example if cat is an object the colour of the cat is an attribute and methods are functions inside a class they represent what an object can do, for example a cat can jump is a method.  
+In simple words attributes are properties of an object, for example if cat is an object the colour of the cat is an attribute.   
+Methods are functions inside a class they represent what an object can do, for example a cat can jump is a method.  
 We can make attributes inside the class's code block or we can assign them directly like below, this is called dynamic attribute assignment:
 ```py
 class Employee:
@@ -44,37 +44,36 @@ This attribute is only available to that instance and not to the class.It gets a
 ### The init method
 ```py
 class Employee:
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
     def work(self):
         print(f"working...")
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 print(emp_1.email)
-emp_1.work()#method being used
+emp_1.work() #method being used
 ```
 Here the init method is used to create attributes for the object Employee and is common to all the instances unlike the dynamic attribute assignment.Also the self represents the instance, The self can be replaced with anything that represents the instance but mostly "self" is used. init method name is surrounded by `__` (2 underscores) these are called dunders and we will learn about them later.  
 
-`self.fname = fname` saves the value of `fname` inside the object so each instance can have its own `fname` and it stays as an attribute to the object.  
+`self.fname = fname` saves the value of `fname` inside the object so each instance can have its own `fname` and it stays as an attribute to the object.But if it was not saved inside the object it would be forgotten next time the instance is used.   
 `Employee("corey", "schafer", 5000)` calls `Employee.__init__`(this is how methods are used with the object)
-Python secretly does this:`Employee.__init__(emp_1, "corey", "schafer", 5000)`
-self refers to emp_1 inside the class and rest are attributes so its not necessary to use self when calling the class.
+Python secretly does this:`Employee.__init__(emp_1, "corey", "schafer", 5000)` self refers to emp_1 inside the class and rest are attributes so its not necessary to use self when calling the class.
 
 ### Methods (in more detail)
 ```py
 class Employee:
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
     def fullname(self):
         return ("{} {}".format(self.fname, self.lname))
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 print(emp_1.fullname())
 ```
 Previously we saw `work` method but we haven't spoken in detail about it,here we creating a method to return
@@ -100,15 +99,15 @@ and the instance has to be explicitly passed whereas `emp_1.fullname()` the meth
 Variables that are shared among all the instances of the class.
 ```py
 class Employee:
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-    def applyraise(self
+    def applyraise(self):
         self.pay = self.pay*1.04
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 print(emp_1.pay)
 emp_1.applyraise()
 print(emp_1.pay)
@@ -117,15 +116,15 @@ This works but a better way would be:
 ```py
 class Employee:
     raise = 1.04
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
     def applyraise(self)
         self.pay = self.pay*self.raise
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 print(emp_1.pay)
 emp_1.applyraise()
 print(emp_1.pay)
@@ -153,13 +152,13 @@ class.
 ```py
 class Employee:
     raise = 1.04
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 Employee.raise = 1.05
 print(Employee.raise)
 print(emp_1.raise)
@@ -169,13 +168,13 @@ print(emp_2.raise)
 ```py
 class Employee:
     raise = 1.04
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 emp_1.raise = 1.05
 print(Employee.raise)
 print(emp_1.raise)
@@ -187,14 +186,14 @@ print(emp_1.__dict__)
 ```py
 class Employee:
     noofemployees = 0
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
         noofemployees += 1
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 print(noofemployees)
 ```
 This gives an output 2 because the variable gets incremented 2 times because 2 instances were instantiated
@@ -205,7 +204,7 @@ and would get stored in the memory as a class variable
 ```py
 class Employee:
     raise = 1.04
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
@@ -213,8 +212,8 @@ class Employee:
     @classmethod
     def set_raise_amount(cls, amount):
         cls.raise = amount
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 Employee.set_raise_amount(1.05)
 ```
 This is a class method example, here a decorator `@classmethod` is used and instead of the instance `self` the class is used in the form of `cls`.  
@@ -227,7 +226,7 @@ and this is what alternative constructors mean.
 
 ```py
 class Employee:
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
@@ -237,8 +236,8 @@ class Employee:
         first, last, pay = emp_str.split("-")
         return cls(first, last, pay)
 emp_str_1 = "John-Doe-70000"
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 new_emp_1 = Employee.from_string(emp_str_1)
 print(new_emp_1.pay)
 ```
@@ -248,7 +247,7 @@ This is how class methods are used to create instances, Here to parse the data, 
 
 ```py
 class Employee:
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
@@ -260,8 +259,8 @@ class Employee:
             return False
         return True
 
-emp_1 = Employee("corey","schafer",5000)
-emp_2 = Employee("Rai","Rai",6000)
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
 if Employee.is_workday("Tuesday"):
     print("workday")
 ```
@@ -271,7 +270,7 @@ Static methods are normal methods that are related to the object the class creat
 Inheritance allows a subclass to reuse and extend the attributes and methods of an existing class
 ```py
 class Employee:
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
@@ -309,61 +308,62 @@ class Developer(Employee)
  |  __weakref__
  |      list of weak references to the object (if defined)
 ```
-The last print gives helpful information about the order of methods and other useful informations
+The last print gives helpful information about the order of methods and other useful informations   
 ```py
 class Employee:
-    raise = 1.05
-    def __init__(self,fname,lname,pay):
+    RAISE = 1.05
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-    def apply_raise(self,raise):
-        self.raise = raise
+    def apply_raise(self):
+        self.pay = int(self.pay*self.RAISE)
 class Developer(Employee):
-    pass
-dev_1 = Developer("corey","schafer",5000)
-dev_2 = Employee("Rai","Rai",6000)
+    RAISE = 1.10
+dev_1 = Developer("corey", "schafer", 5000)
+dev_2 = Employee("Rai", "Rai", 6000)
 print(dev_1.pay)
-dev1.apply_raise(1.10)
+dev_1.apply_raise()
 print(dev_1.pay)
-print(dev_2.raise)
+print(dev_2.pay)
 ```
 By changing the raise amount in our subclass it didnt have any effect on our employee instances,We can make changes to the subclass
 without changing it in parent class
+
 ```py
 class Employee:
     raise = 1.05
-    def __init__(self,fname,lname,pay):
+    def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-    def apply_raise(self,raise):
+    def apply_raise(self, raise):
         self.raise = raise
 class Developer(Employee):
-    def __init__(self,fname,lname,pay,prog_lang):
-        super().__init__(fname,lname,pay) #Employee.__init(self,fname,lname,pay), another way people use
+    def __init__(self, fname, lname, pay, prog_lang):
+        super().__init__(fname, lname, pay) #Employee.__init(self,fname,lname,pay), another way people use
         self.prog_lang = prog_lang
 class Manager(Employee):
-    def __init__(self,fname,lname,pay,employees=None):
-        super().__init__(fname,lname,pay) #Employee.__init(self,fname,lname,pay), another way people use
+    def __init__(self, fname, lname, pay, employees=None):
+        super().__init__(fname, lname, pay) #Employee.__init(self,fname,lname,pay), another way people use
         if employees is None:
             self.employees = []
         else:
             self.employees = employees
-    def add_emp(self,emp):
+    def add_emp(self, emp):
         if employee not in self.employees:
             self.employee.append(emp)
-    def rem_emp(self,emp):
+    def rem_emp(self, emp):
         if employee in self.employees:
             self.employee.remove(emp)
     def print_emp(self):
         for emp in self.employees:
             print("-->", emp.fullname())
-dev_1 = Developer("corey","schafer",5000,"python")
-dev_2 = Developer("Rai","Rai",6000,"java")
-mgr_1 = Manager("sue","smith",70000,[dev_1])
+dev_1 = Developer("corey", "schafer", 5000, "python")
+dev_2 = Developer("Rai", "Rai", 6000, "java")
+mgr_1 = Manager("sue", "smith", 70000, [dev_1])
 print(mgr_1.email)
 mgr_1.add_emp(dev_2)
 mgr_1.print_emp()
@@ -374,3 +374,252 @@ print(issubclass(Manager, Employee))
 print(issubclass(Manager, Developer))
 ```
 
+### Special methods/magic methods
+Two special methods `__repr__` which is made for developers and `__str__` is for users.
+The form of repr's return is same as how the instantiation's RHS is `Employee("Corey", "Schafer", 50000)`.
+The str is just a print to show info about the object
+```py
+lists = []
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.fullname = self.fname + self.lname
+        self.email = fname + lname + "@gmail.com"
+    def __repr__(self):
+        return f"Employee('{self.fname}','{self.lname}','{self.pay}')"
+    def __str__(self):
+        return f"{self.fullname} - {self.email}"
+emp_1 = Employee("Corey", "Schafer", 50000)
+emp_2 = Employee("rai", "rei", 2500)
+print(emp_1)
+print(str(emp_1))
+print(repr(emp_1))
+lists.append(emp_1)
+lists.append(emp_2)
+print(lists)
+```
+this prints out to 
+```
+001 | CoreySchafer - CoreySchafer@gmail.com
+002 | CoreySchafer - CoreySchafer@gmail.com
+003 | Employee('Corey','Schafer','50000')
+004 | [Employee('Corey','Schafer','50000'), Employee('rai','rei','2500')]
+```
+the containers display the object as its repr! but actually the object stored is at a memory with its all its attributes and methods etc....
+
+another special method is `__add__` to add some attribute of the object or if the object is a number then the number itself gets added like how 2 integers get added.
+
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+    def __add__(self, other):
+        return (self.pay + other.pay)
+    
+emp_1 = Employee("Corey", "Schafer", 50000)
+emp_2 = Employee("rai", "rei", 2500)
+print(emp_1.add(emp_2))
+```
+An exmaple of add method 
+There are a lot of magic methods like these which can be seen at python docs that are attached below:
+1.[Emulating generic types](https://docs.python.org/3/reference/datamodel.html#emulating-generic-types)  
+2.[Emulating callable objects](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects)  
+3.[Emulating container types](https://docs.python.org/3/reference/datamodel.html#emulating-container-types)  
+4.[Emulating numeric types](https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types) - Like the `__add__` method  
+5.[Emulating buffer types](https://docs.python.org/3/reference/datamodel.html#emulating-buffer-types) - IDK what this is XD  
+but normally only some of them will be used 
+
+### Property decorators - getters, setters and deleters
+
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+        self.email = fname + lname + "@gmail.com"
+
+    def fullname(self):
+        """returns a fullname string"""
+        return ("{} {}".format(self.fname, self.lname))
+
+emp_1 = Employee("corey", "schafer", 5000)
+
+print(emp_1.fname)
+print(emp_1.email)
+print(emp_1.fullname())
+```
+This gives an output  
+```
+corey
+coreyschafer@gmail.com
+corey schafer
+```
+but
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+        self.email = fname + lname + "@gmail.com"
+
+    def fullname(self):
+        """returns a fullname string"""
+        return ("{} {}".format(self.fname, self.lname))
+
+emp_1 = Employee("corey", "schafer", 5000)
+emp_1.fname = "jojo"
+
+print(emp_1.fname)
+print(emp_1.email)
+print(emp_1.fullname())
+```
+gives an output 
+```
+jojo
+coreyschafer@gmail.com
+jojo schafer
+```
+
+so to fix this we do:
+
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+
+    def email():
+        return ("{}.{}@gmail.com".format(self.fname, self.lname))
+
+    def fullname(self):
+        """returns a fullname string"""
+        return ("{} {}".format(self.fname, self.lname))
+
+emp_1 = Employee("corey", "schafer", 5000)
+emp_1.fname = "jojo"
+
+print(emp_1.fname)
+print(emp_1.email())
+print(emp_1.fullname())
+```
+but anyone who is using our class-their code breaks so to continue using the email as an attribute we do...
+
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+
+    @property
+    def email():
+        return ("{}.{}@gmail.com".format(self.fname, self.lname))
+
+    def fullname(self):
+        """returns a fullname string"""
+        return ("{} {}".format(self.fname, self.lname))
+
+emp_1 = Employee("corey", "schafer", 5000)
+emp_1.fname = "jojo"
+
+print(emp_1.fname)
+print(emp_1.email)
+print(emp_1.fullname())
+```
+so now we are able to access email like an attribute
+thats how we use getters  
+  
+now if we use:
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+
+    @property
+    def email():
+        return ("{}.{}@gmail.com".format(self.fname, self.lname))
+
+    @property
+    def fullname(self):
+        """returns a fullname string"""
+        return ("{} {}".format(self.fname, self.lname))
+
+emp_1 = Employee("corey", "schafer", 5000)
+emp_1.fullname = "jojo boi"
+
+print(emp_1.fullname)
+```
+this gives an error so now we use the setter
+
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+
+    @property
+    def email():
+        return ("{}.{}@gmail.com".format(self.fname, self.lname))
+
+    @property
+    def fullname(self):
+        """returns a fullname string"""
+        return ("{} {}".format(self.fname, self.lname))
+    
+    @fullname.setter
+    def fullname(self, name):
+        """returns a fullname string"""
+        first , last = name.split(" ")
+        self.first = first
+        self.last = last
+
+
+emp_1 = Employee("corey", "schafer", 5000)
+emp_1.fullname = "jojo boi"
+
+
+print(emp_1.fullname)
+```
+this gives output:
+```
+corey schafer
+```
+now deleter
+```py
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+
+    @property
+    def email():
+        return ("{}.{}@gmail.com".format(self.fname, self.lname))
+
+    @property
+    def fullname(self):
+        """returns a fullname string"""
+        return ("{} {}".format(self.fname, self.lname))
+    
+    @fullname.setter
+    def fullname(self, name):
+        """returns a fullname string"""
+        first , last = name.split(" ")
+        self.first = first
+        self.last = last
+
+    @fullname.deleter
+    def fullname(self):
+        print("delete name")
+        self.fname = None
+        self.lname = None
+
+
+emp_1 = Employee("corey", "schafer", 5000)
+emp_1.fullname = "jojo boi"
+del emp_1.fullname 
+print(emp_1.fullname)
+```

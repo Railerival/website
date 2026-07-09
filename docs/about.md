@@ -9,7 +9,7 @@ My name is 🜲 Rai:
 -C language
 -2D game using Pygame
 ```
-🕜 Future plans [?] idk
+🕜 Future plans [?] idk  
 🎨 i like to draw and sing  
 🖊️ I also would love to start writing blogs   
 
