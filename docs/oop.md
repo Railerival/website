@@ -2,6 +2,7 @@
 
 ### About the page
 **I m learning OOP and making notes of it as i go (reference:[ Corey Schafer](https://youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc&si=WBUQBxK8mvtON8cT))** But i have did my own research too and made it as detailed as possible.
+I need to re-check the last topic for issues and add a few more stuff.
 
 __Why is OOP needed?__:  
 OOP logically helps us to group data and functions such that it is easy to use and build upon if need be.Everything is an object even integers,lists,etc.
@@ -22,7 +23,7 @@ print(type(INTEGER))
 ```
 `Whats an instance?`: It is an object created using the blueprint(class),  
 `Whats instantiation?`: It is creation of the instance   
-`emp_1` is an instance variable, each instance variable contains data unique to itself.
+`emp_1` is an instance variable, each instance variable generally contains data unique to itself.
 
 
 ### What are attributes and methods?
@@ -50,16 +51,16 @@ class Employee:
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
     def work(self):
-        print(f"working...")
+        print("working...")
 emp_1 = Employee("corey", "schafer", 5000)
 emp_2 = Employee("Rai", "Rai", 6000)
 print(emp_1.email)
 emp_1.work() #method being used
 ```
-Here the init method is used to create attributes for the object Employee and is common to all the instances unlike the dynamic attribute assignment.Also the self represents the instance, The self can be replaced with anything that represents the instance but mostly "self" is used. init method name is surrounded by `__` (2 underscores) these are called dunders and we will learn about them later.  
+Here the init method is used to create attributes for the object Employee and the attribute is common to all the instances unlike the dynamic attribute assignment, but still the data of the attributes might vary for different instances.Also the `self` represents the instance, The self can be replaced with anything that represents the instance but mostly "self" is used. init method name is surrounded by `__` (2 underscores) these are called dunders and we will learn about them later.  
 
 `self.fname = fname` saves the value of `fname` inside the object so each instance can have its own `fname` and it stays as an attribute to the object.But if it was not saved inside the object it would be forgotten next time the instance is used.   
-`Employee("corey", "schafer", 5000)` calls `Employee.__init__`(this is how methods are used with the object)
+`Employee("corey", "schafer", 5000)` calls `Employee.__init__` implicitly(this is how methods are used with the object).  
 Python secretly does this:`Employee.__init__(emp_1, "corey", "schafer", 5000)` self refers to emp_1 inside the class and rest are attributes so its not necessary to use self when calling the class.
 
 ### Methods (in more detail)
@@ -76,12 +77,10 @@ emp_1 = Employee("corey", "schafer", 5000)
 emp_2 = Employee("Rai", "Rai", 6000)
 print(emp_1.fullname())
 ```
-Previously we saw `work` method but we haven't spoken in detail about it,here we creating a method to return
-fullname of the person.We are doing so by calling it with the instance `emp_1.fullname()` which then gets
-printed.As mentioned before `__init__` is also a method except except the self is the instance itself and 
+Previously we saw `work` method but we haven't spoken in detail about it,here we are creating a method to return fullname of the person.We are doing so by calling it with the instance `emp_1.fullname()` which then gets
+printed.As mentioned before `__init__` is also a method except the self is the instance itself and 
 doesn't need to be explicitly passed.
-When we call `emp_1.fullname()` python secretly does `Employee.fullname(emp)` so a self is necessary if it is
-an instance method.What is an instance method, for now we would simply say a method defined inside a class is an instance method.
+When we call `emp_1.fullname()` python secretly does `Employee.fullname(emp_1)` so a self is necessary as an argument if it is an instance method.What is an instance method, for now we would simply say a method defined inside a class is an instance method.
 But there are other methods like static methods and class methods which will be learned later.
 if you dont use self in the fullname that is `def fullname():` it will give a TypeError
 ```py
@@ -92,7 +91,7 @@ Employee.fullname() takes 0 positional arguments but 1 was given
           ^^^^^^^^^^^^^^^^
 TypeError: Employee.fullname() takes 0 positional arguments but 1 was given
 ```  
-You can also do `Employee.fullname(emp)` instead of `emp_1.fullname()` and the difference is method is getting called on the class
+You can also do `Employee.fullname(emp_1)` instead of `emp_1.fullname()` and the difference is method is getting called on the class
 and the instance has to be explicitly passed whereas `emp_1.fullname()` the method is directly being used on the instance
 
 ### Class variables
@@ -115,31 +114,38 @@ print(emp_1.pay)
 This works but a better way would be:
 ```py
 class Employee:
-    raise = 1.04
+    raise_ = 1.04
     def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-    def applyraise(self)
-        self.pay = self.pay*self.raise
+    def applyraise(self):
+        self.pay = self.pay*self.raise_
 emp_1 = Employee("corey", "schafer", 5000)
 emp_2 = Employee("Rai", "Rai", 6000)
-print(emp_1.pay)
-emp_1.applyraise()
-print(emp_1.pay)
-print(Employee.raise)
-print(emp_1.raise)
-print(emp_2.raise)
-print(emp_1.__dict__)
+print(emp_1.pay) #prints the pay
+emp_1.applyraise() #applies the raise
+print(emp_1.pay) #prints the new pay
+print(Employee.raise_) #prints the class variable raise_
+print(emp_1.raise_) #raises emp_1's salary
+print(emp_2.raise_) #raises emp_2's salary
+print(emp_1.__dict__) 
+print()
 print(Employee.__dict__)
 ```
+the last 3 prints give some info:
+```
+{'fname': 'corey', 'lname': 'schafer', 'pay': 5200.0, 'email': 'coreyschafer@gmail.com'}
+
+{'__module__': '__main__', '__firstlineno__': 1, 'raise_': 1.04, '__init__': <function Employee.__init__ at 0x7f0b38452fb0>, 'applyraise': <function Employee.applyraise at 0x7f0b38453060>, '__static_attributes__': ('email', 'fname', 'lname', 'pay'), '__dict__': <attribute '__dict__' of 'Employee' objects>, '__weakref__': <attribute '__weakref__' of 'Employee' objects>, '__doc__': None}
+```
 Here there is a class variable which is an attribute of the class and is also a common attribute to all the instances.
-In this line `self.pay = self.pay*self.raise`, `self.raise` was used instead of using `raise` as the variable because it would not be accessible, another way to access it would be `self.pay = self.pay*Employee.raise`.
+In this line `self.pay = self.pay*self.raise`, `self.raise` was used instead of using `raise` as the variable because it would not be accessible if `self` is not used, another way to access it would be `self.pay = self.pay*Employee.raise`.
 ```py
-print(Employee.raise)
-print(emp_1.raise)
-print(emp_2.raise)
+print(Employee.raise_)
+print(emp_1.raise_)
+print(emp_2.raise_)
 ```
 This tells how the class variable can be accessed outside the class and shows that it is common to all instances and
 the class itself.
@@ -147,11 +153,11 @@ the class itself.
 print(emp_1.__dict__)
 print(Employee.__dict__)
 ```
-This prints the namespace of the instance and the class and shows that the `print(Employee.__dict__)` one displays the class variable but the `print(emp_1.__dict__)` one does not have it.But when we do the `print(emp_1.raise)` the instance accesses it from the 
+This prints the namespace of the instance and the class and shows that the `print(Employee.__dict__)` one displays the class variable but the `print(emp_1.__dict__)` one does not have it.But when we do the `print(emp_1.raise_)` the instance accesses it from the 
 class.
 ```py
 class Employee:
-    raise = 1.04
+    raise_ = 1.04
     def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
@@ -159,15 +165,15 @@ class Employee:
         self.email = fname + lname + "@gmail.com"
 emp_1 = Employee("corey", "schafer", 5000)
 emp_2 = Employee("Rai", "Rai", 6000)
-Employee.raise = 1.05
-print(Employee.raise)
-print(emp_1.raise)
-print(emp_2.raise)
+Employee.raise_ = 1.05
+print(Employee.raise_)
+print(emp_1.raise_)
+print(emp_2.raise_)
 ```
-`Employee.raise = 1.05` changed the class variable for everything including the instances and the class
+`Employee.raise_ = 1.05` changed the class variable for everything including the instances and the class
 ```py
 class Employee:
-    raise = 1.04
+    raise_ = 1.04
     def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
@@ -175,35 +181,50 @@ class Employee:
         self.email = fname + lname + "@gmail.com"
 emp_1 = Employee("corey", "schafer", 5000)
 emp_2 = Employee("Rai", "Rai", 6000)
-emp_1.raise = 1.05
-print(Employee.raise)
-print(emp_1.raise)
-print(emp_2.raise)
+emp_1.raise_ = 1.05
+print(Employee.raise_)
+print(emp_1.raise_)
+print(emp_2.raise_)
 print(emp_1.__dict__)
 ```
-`emp_1.raise = 1.05` gives a variable attribute to only emp_1 instance and its also seen its namespace.
+`emp_1.raise_ = 1.05` gives a variable attribute to only emp_1 instance and its also seen its namespace.And it doesnt change it for the class or the other instances....
 
 ```py
 class Employee:
-    noofemployees = 0
+    no_of_employees = 0
     def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-        noofemployees += 1
+        Employee.no_of_employees += 1
 emp_1 = Employee("corey", "schafer", 5000)
 emp_2 = Employee("Rai", "Rai", 6000)
-print(noofemployees)
+print(Employee.no_of_employees)
 ```
 This gives an output 2 because the variable gets incremented 2 times because 2 instances were instantiated
 and would get stored in the memory as a class variable
 
+but make sure u dont do this instead:
+```py
+class Employee:
+    no_of_employees = 0
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + lname + "@gmail.com"
+        self.no_of_employees += 1
+emp_1 = Employee("corey", "schafer", 5000)
+emp_2 = Employee("Rai", "Rai", 6000)
+print(Employee.no_of_employees)
+```
+the first one increments it for the class which increments it for all the instances commonly but the second one only increments it for the class.
 ### Class methods and Static methods 
 
 ```py
 class Employee:
-    raise = 1.04
+    raise_ = 1.04
     def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
@@ -211,7 +232,7 @@ class Employee:
         self.email = fname + lname + "@gmail.com"
     @classmethod
     def set_raise_amount(cls, amount):
-        cls.raise = amount
+        cls.raise_ = amount
 emp_1 = Employee("corey", "schafer", 5000)
 emp_2 = Employee("Rai", "Rai", 6000)
 Employee.set_raise_amount(1.05)
@@ -264,7 +285,7 @@ emp_2 = Employee("Rai", "Rai", 6000)
 if Employee.is_workday("Tuesday"):
     print("workday")
 ```
-Static methods are normal methods that are related to the object the class creates, but does not automatically pass the `self` or `cls` when called.
+Static methods are simply functions that live inside the namespace of the class.They are just under the namespace of the class for convenience. They can be called from a class or from an instance.
 
 ### Inheritance and Subclasses
 Inheritance allows a subclass to reuse and extend the attributes and methods of an existing class
@@ -311,16 +332,16 @@ class Developer(Employee)
 The last print gives helpful information about the order of methods and other useful informations   
 ```py
 class Employee:
-    RAISE = 1.05
+    raise_ = 1.05
     def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
     def apply_raise(self):
-        self.pay = int(self.pay*self.RAISE)
+        self.pay = int(self.pay*self.raise_)
 class Developer(Employee):
-    RAISE = 1.10
+    raise_ = 1.10
 dev_1 = Developer("corey", "schafer", 5000)
 dev_2 = Employee("Rai", "Rai", 6000)
 print(dev_1.pay)
@@ -333,14 +354,17 @@ without changing it in parent class
 
 ```py
 class Employee:
-    raise = 1.05
+    raise_ = 1.05
     def __init__(self, fname, lname, pay):
         self.fname = fname
         self.lname = lname
         self.pay = pay
         self.email = fname + lname + "@gmail.com"
-    def apply_raise(self, raise):
-        self.raise = raise
+    def apply_raise(self, raise_):
+        self.raise_ = raise_
+    def full_name(self):
+        self.full_name_ = self.fname + self.lname
+        return self.full_name_
 class Developer(Employee):
     def __init__(self, fname, lname, pay, prog_lang):
         super().__init__(fname, lname, pay) #Employee.__init(self,fname,lname,pay), another way people use
@@ -353,14 +377,14 @@ class Manager(Employee):
         else:
             self.employees = employees
     def add_emp(self, emp):
-        if employee not in self.employees:
-            self.employee.append(emp)
+        if emp not in self.employees:
+            self.employees.append(emp)
     def rem_emp(self, emp):
-        if employee in self.employees:
-            self.employee.remove(emp)
+        if emp in self.employees:
+            self.employees.remove(emp)
     def print_emp(self):
         for emp in self.employees:
-            print("-->", emp.fullname())
+            print("-->", emp.full_name())
 dev_1 = Developer("corey", "schafer", 5000, "python")
 dev_2 = Developer("Rai", "Rai", 6000, "java")
 mgr_1 = Manager("sue", "smith", 70000, [dev_1])
@@ -372,6 +396,7 @@ print(isinstance(mgr_1, Employee))
 print(issubclass(Developer, Employee))
 print(issubclass(Manager, Employee))
 print(issubclass(Manager, Developer))
+
 ```
 
 ### Special methods/magic methods
@@ -422,7 +447,7 @@ class Employee:
     
 emp_1 = Employee("Corey", "Schafer", 50000)
 emp_2 = Employee("rai", "rei", 2500)
-print(emp_1.add(emp_2))
+print(emp_1.__add__(emp_2))
 ```
 An exmaple of add method 
 There are a lot of magic methods like these which can be seen at python docs that are attached below:
