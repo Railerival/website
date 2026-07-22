@@ -5,9 +5,9 @@ My name is 🜲 Rai:
 🖼️ Loves anime  
 🤔 Working and learning on:
 ```
--Python OOP
--C language
--2D game using Pygame
+-working on 2d games with pygame(A project)
+-learning 8051 assembly
+-learning C language
 ```
 🕜 Future plans [?] idk  
 🎨 i like to draw and sing  
