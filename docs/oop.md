@@ -531,7 +531,16 @@ print(emp_1.fname)
 print(emp_1.email())
 print(emp_1.fullname())
 ```
-but anyone who is using our class-their code breaks so to continue using the email as an attribute we do...
+but anyone who is using our class-their code breaks 
+```
+jojo
+Traceback (most recent call last):
+  File "/home/rai/Desktop/python tests/game.py", line 17, in <module>
+    print(emp_1.email())
+          ~~~~~~~~~~~^^
+TypeError: Employee.email() takes 0 positional arguments but 1 was given
+```
+so to continue using the email as an attribute we do...
 
 ```py
 class Employee:
@@ -540,7 +549,7 @@ class Employee:
         self.lname = lname
 
     @property
-    def email():
+    def email(self):
         return ("{}.{}@gmail.com".format(self.fname, self.lname))
 
     def fullname(self):
@@ -553,6 +562,12 @@ emp_1.fname = "jojo"
 print(emp_1.fname)
 print(emp_1.email)
 print(emp_1.fullname())
+```
+
+```
+jojo
+jojo.schafer@gmail.com
+jojo schafer
 ```
 so now we are able to access email like an attribute
 thats how we use getters  
@@ -578,8 +593,14 @@ emp_1.fullname = "jojo boi"
 
 print(emp_1.fullname)
 ```
-this gives an error so now we use the setter
-
+```
+Traceback (most recent call last):
+  File "/home/rai/Desktop/python tests/main.py", line 16, in <module>
+    emp_1.fullname = "jojo boi"
+    ^^^^^^^^^^^^^^
+AttributeError: property 'fullname' of 'Employee' object has no setter
+```
+this gives an error so now we use the setter...
 ```py
 class Employee:
     def __init__(self, fname, lname, pay):
@@ -599,8 +620,8 @@ class Employee:
     def fullname(self, name):
         """returns a fullname string"""
         first , last = name.split(" ")
-        self.first = first
-        self.last = last
+        self.fname = first
+        self.lname = last
 
 
 emp_1 = Employee("corey", "schafer", 5000)
@@ -611,9 +632,9 @@ print(emp_1.fullname)
 ```
 this gives output:
 ```
-corey schafer
+jojo boi
 ```
-now deleter
+now deleter .......
 ```py
 class Employee:
     def __init__(self, fname, lname, pay):
@@ -633,12 +654,12 @@ class Employee:
     def fullname(self, name):
         """returns a fullname string"""
         first , last = name.split(" ")
-        self.first = first
-        self.last = last
+        self.fname = first
+        self.lname = last
 
     @fullname.deleter
     def fullname(self):
-        print("delete name")
+        print("deleted name")
         self.fname = None
         self.lname = None
 
