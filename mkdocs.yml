@@ -5,6 +5,8 @@ nav:
   - Arts: arts.md
   - About: about.md
   - OOP: oop.md
+  - Pyside6: pyside6.md
+  - Pathlib: pathlib.md
 theme:
   logo: assets/logo.png
   favicon: assets/logo.png
